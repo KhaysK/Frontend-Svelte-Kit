@@ -2,11 +2,12 @@
 
 import {onMount} from 'svelte';
 
+let comicSrc: string;
+let comicAlt: string;
+let comicTitle: string;
+let comicDate: string;
+
 onMount(async() => {
-    const image = document.getElementById("image") as HTMLImageElement;
-    const imageTitle = document.getElementById("img-title") as HTMLDivElement;
-    const imageDate = document.getElementById("img-date") as HTMLDivElement;
-    
     interface Comic{
         month: string;
         num: number;
@@ -56,14 +57,14 @@ onMount(async() => {
         let data :Comic | undefined = await getImage();
 
         if(data){
-            image.src = data.img;
-            image.alt = data.alt;
-            imageTitle.innerText = "Title: " + data.title;
+            comicSrc = data.img;
+            comicAlt = data.alt;
+            comicTitle = data.title;
             let day = data.day;
             let month = data.month;
             let year = data.year;
             var date = new Date(Date.UTC(+year, +month - 1, +day));
-            imageDate.innerText = "Date: " + date.toLocaleDateString('en-US');
+            comicDate = date.toLocaleDateString('en-US');
             console.log(data)
         }
     }
@@ -75,10 +76,10 @@ onMount(async() => {
 </script>
 
 <div id="comic">
-    <img id="image" src="" alt="" >
+    <img id="image" src="{comicSrc}" alt="{comicAlt}" >
     <div id="img-info">
-        <div id="img-title">Title:</div>
-        <div id="img-date">Date:</div>
+        <div id="img-title">Title: {comicTitle}</div>
+        <div id="img-date">Date: {comicDate}</div>
     </div>
 </div>
 
