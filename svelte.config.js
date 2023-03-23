@@ -1,7 +1,5 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
-import { terser } from 'rollup-plugin-terser';
-import nodeResolve from '@rollup/plugin-node-resolve';
 
 const dev = process.argv.includes('dev');
 
@@ -19,22 +17,6 @@ const config = {
 		paths: {
 			base: dev ? '' : '/Frontend-Svelte-Kit',
 		},
-		vite: {
-			optimizeDeps: {
-			  include: ['@emotion/hash']
-			},
-			plugins: [
-				terser({
-					compress: {
-					  ecma: 2015,
-					  pure_getters: true
-					},
-					module: true,
-					toplevel: true
-				  }),
-				nodeResolve()
-			]
-		}
 	}
 };
 
