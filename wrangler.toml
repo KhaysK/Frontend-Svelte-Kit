@@ -1,0 +1,9 @@
+name = "portfolio-app"
+account_id = "718d589950a6da64b1e6535518022e2f97020"
+
+[site]
+bucket = "./build"
+
+[build]
+command = "npm run build"
+main = "build/index.js"
