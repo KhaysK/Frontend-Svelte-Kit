@@ -1,31 +1,37 @@
-name: Build and Deploy
+name: Deploy to Cloudflare Workers
 
 on:
   push:
     branches:
       - main
 
-permissions:
-  contents: write
-
 jobs:
-  build-and-deploy:
-    name: Build and Deploy to GH Pages
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Node.js v16
-        uses: actions/setup-node@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '14'
+
       - name: Install dependencies
-        run: npm ci
+        run: npm install
+
       - name: Linting and Formatting check
         run: npm run check-lint-format
-      - name: Build website
+        
+      - name: Build
         run: npm run build
-      - name: Deploy to GitHub Page
-        uses: JamesIves/github-pages-deploy-action@v4
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@2.1.1
         with:
-          folder: build
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          buildCommand: 'npm run build'
+          script: 'worker'
+
+
