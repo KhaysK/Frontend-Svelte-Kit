@@ -4,26 +4,33 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
-		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Righteous&display=swap" rel="stylesheet">
-     	<script src="https://kit.fontawesome.com/591fa4b7a7.js" crossorigin="anonymous"></script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Righteous&display=swap"
+			rel="stylesheet"
+		/>
+		<script src="https://kit.fontawesome.com/591fa4b7a7.js" crossorigin="anonymous"></script>
 		%sveltekit.head%
 		<style>
-			body, html {
+			body,
+			html {
 				height: 100%;
 				width: 100%;
 				padding: 0;
 				margin: 0;
 			}
+
 			body {
 				display: flex;
 				flex-direction: column;
 			}
-			a{
+
+			a {
 				text-decoration: none;
 				color: #f4efdb;
 			}
 		</style>
 	</head>
+
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>

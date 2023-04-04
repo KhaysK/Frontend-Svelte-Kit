@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-node';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 
 const dev = process.argv.includes('dev');
@@ -15,8 +15,8 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter(),
 		paths: {
-			base: dev ? '' : '/Frontend-Svelte-Kit',
-		},
+			base: dev ? '' : '/Frontend-Svelte-Kit'
+		}
 	}
 };
 
